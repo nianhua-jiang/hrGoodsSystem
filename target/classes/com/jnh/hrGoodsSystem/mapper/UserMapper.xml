@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnh.hrGoodsSystem.mapper.UserMapper">
+	<select id="login" parameterType="String"  resultType="com.jnh.hrGoodsSystem.bean.UserBean">
+		SELECT * FROM user WHERE userName = #{username} AND password = HEX(AES_ENCRYPT(#{password}, "HR"));
+	</select>
+	
+	<select id="checkUserName" parameterType="String"  resultType="int">
+		SELECT COUNT(*) FROM user WHERE userName = #{username} ;
+	</select>
+	
+	<insert id="insertUser"  parameterType="com.jnh.hrGoodsSystem.bean.UserBean">
+			INSERT INTO `user` (userName,password,email,tel) VALUE (#{userName},HEX(AES_ENCRYPT(#{password},"HR")),#{email},#{tel});
+	</insert>
+</mapper>

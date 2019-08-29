@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnh.hrGoodsSystem.mapper.GoodsMapper">
+	<select id="searchAllGoods" parameterType="Integer" resultType="com.jnh.hrGoodsSystem.bean.GoodsBean">
+		SELECT * FROM goods WHERE goods.userIdFlg = #{userIdFlg} LIMIT #{from},#{to};
+	</select>
+	
+	<select id="searchCount" parameterType="Integer"  resultType="Integer">
+		SELECT COUNT(*) FROM goods WHERE userIdFlg = #{userIdFlg};
+	</select>
+	
+	<insert id="insertGoods"  parameterType="com.jnh.hrGoodsSystem.bean.GoodsBean">
+			INSERT INTO goods (goodsName,goodsCount,goodsUnit,goodsBuyPrice,goodsSellPrice,userIdFlg) VALUE (#{goodsName},#{goodsCount},#{goodsUnit},#{goodsBuyPrice},#{goodsSellPrice},#{userIdFlg});
+	</insert>
+</mapper>
