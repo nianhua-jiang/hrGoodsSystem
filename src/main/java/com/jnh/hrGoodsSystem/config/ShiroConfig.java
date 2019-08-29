@@ -34,6 +34,7 @@ public class ShiroConfig {
 		filterMap.put("/router/*", "anon");
 		filterMap.put("/user/insertUser", "anon");
 		filterMap.put("/user/checkUsername", "anon");
+		//
 		//filterMap.put("/goods", "anon");
 		filterMap.put("/**", "authc");
 		bean.setFilterChainDefinitionMap(filterMap);
